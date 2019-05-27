@@ -27,9 +27,9 @@ class MobileDataAdapter (private val dataList: ArrayList<MobileData>, private va
     class ViewHolder(v: View) :RecyclerView.ViewHolder(v){
 
         fun bind(item: MobileData, listener: Listener, position: Int){
-            itemView.item_id.text=item.id
+            itemView.item_id.text=item._id
             itemView.item_quarter.text=item.quarter
-            itemView.item_volume.text=item.volume
+            itemView.item_volume.text=item.volume_of_mobile_data
             itemView.setOnClickListener{listener.onItemClick(item)}
         }
     }

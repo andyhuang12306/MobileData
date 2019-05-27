@@ -1,7 +1,6 @@
 package com.example.myapplication
 
 import io.reactivex.Observable
-import io.reactivex.functions.Function
 
 class MobileDataLoader :BaseLoader(){
 
@@ -11,7 +10,7 @@ class MobileDataLoader :BaseLoader(){
         mDataService= RetrofitServiceManager.getInstance().create(DataService::class.java)
     }
 
-    fun getMobileData(id: String, limit: Int): Observable<List<MobileData>>{
+    fun getMobileData(id: String, limit: Int): Observable<Response>{
         return observe(mDataService.getData(id, limit))
     }
 }

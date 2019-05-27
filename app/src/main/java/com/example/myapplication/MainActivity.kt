@@ -8,6 +8,7 @@ import android.widget.Toast
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Action
 import io.reactivex.functions.Consumer
+import java.lang.Exception
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity(), MobileDataAdapter.Listener {
@@ -16,13 +17,13 @@ class MainActivity : AppCompatActivity(), MobileDataAdapter.Listener {
 
     }
 
-    private var recyclerView: RecyclerView?=null
-    private var compositeDisposable: CompositeDisposable?=null
+    private var recyclerView: RecyclerView? = null
+    private var compositeDisposable: CompositeDisposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        compositeDisposable= CompositeDisposable()
+        compositeDisposable = CompositeDisposable()
         initRecyclerView()
 
         loadData()
@@ -31,26 +32,26 @@ class MainActivity : AppCompatActivity(), MobileDataAdapter.Listener {
     private fun loadData() {
         compositeDisposable?.add(
             MobileDataLoader()
-            .getMobileData("a807b7ab-6cad-4aa6-87d0-e283a7353a0f", 56)
-            .subscribe(
-                {list->onSuccess(list as ArrayList<MobileData>)},
-                {error->onError(error)})
+                .getMobileData("a807b7ab-6cad-4aa6-87d0-e283a7353a0f", 56)
+                .subscribe(
+                    { response -> if (response.success) onSuccess(response.result.records) },
+                    { error -> onError(error) })
         )
 
     }
 
-    private fun onSuccess(list: ArrayList<MobileData>){
+    private fun onSuccess(list: ArrayList<MobileData>) {
         val adapter = MobileDataAdapter(list, this)
-        recyclerView?.adapter=adapter
+        recyclerView?.adapter = adapter
     }
 
-    private fun onError(error: Throwable){
+    private fun onError(error: Throwable) {
         Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show();
     }
 
     private fun initRecyclerView() {
         recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         val manager = LinearLayoutManager(this)
-        recyclerView?.layoutManager=manager
+        recyclerView?.layoutManager = manager
     }
 }
