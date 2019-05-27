@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class RetrofitServiceManager {
 
     private static final int TIME_OUT=5;
+    private static final String BASE_URL = "https://data.gov.sg/api/action/";
     private Retrofit mRetrofit;
 
     private RetrofitServiceManager(){
@@ -22,6 +23,7 @@ public class RetrofitServiceManager {
                 .client(client)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(BASE_URL)
                 .build();
     }
 
