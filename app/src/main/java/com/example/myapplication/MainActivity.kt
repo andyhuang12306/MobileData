@@ -5,10 +5,8 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.Toast
+import com.example.myapplication.bean.MobileData
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Action
-import io.reactivex.functions.Consumer
-import java.lang.Exception
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity(), MobileDataAdapter.Listener {
@@ -46,12 +44,18 @@ class MainActivity : AppCompatActivity(), MobileDataAdapter.Listener {
     }
 
     private fun onError(error: Throwable) {
-        Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show()
     }
 
     private fun initRecyclerView() {
         recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         val manager = LinearLayoutManager(this)
-        recyclerView?.layoutManager = manager
+        recyclerView?.layoutManager = manager as RecyclerView.LayoutManager?
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable?.clear()
+        compositeDisposable?.dispose()
     }
 }

@@ -1,8 +1,12 @@
 package com.example.myapplication
 
+import com.example.myapplication.bean.Response
+import com.example.myapplication.network.BaseLoader
+import com.example.myapplication.network.DataService
+import com.example.myapplication.network.RetrofitServiceManager
 import io.reactivex.Observable
 
-class MobileDataLoader :BaseLoader(){
+class MobileDataLoader : BaseLoader(){
 
     lateinit var mDataService: DataService
 

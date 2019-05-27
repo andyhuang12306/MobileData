@@ -1,5 +1,6 @@
-package com.example.myapplication
+package com.example.myapplication.network
 
+import com.example.myapplication.bean.Response
 import retrofit2.http.GET
 import io.reactivex.Observable
 import retrofit2.http.Query

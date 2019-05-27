@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.myapplication.bean.MobileData
 import kotlinx.android.synthetic.main.item_view.view.*
 
 class MobileDataAdapter (private val dataList: ArrayList<MobileData>, private val listener: Listener) : RecyclerView.Adapter<MobileDataAdapter.ViewHolder>(){

@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.network
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
