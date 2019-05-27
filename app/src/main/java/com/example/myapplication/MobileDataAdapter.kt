@@ -31,7 +31,12 @@ class MobileDataAdapter (private val dataList: ArrayList<MobileData>, private va
             itemView.item_id.text=item._id
             itemView.item_quarter.text=item.quarter
             itemView.item_volume.text=item.volume_of_mobile_data.toString()
-            itemView.setOnClickListener{listener.onItemClick(item)}
+            if(item.decreased)
+                itemView.img.visibility=View.VISIBLE
+            else
+                itemView.img.visibility=View.INVISIBLE
+
+            itemView.img.setOnClickListener{listener.onItemClick(item)}
         }
     }
 }

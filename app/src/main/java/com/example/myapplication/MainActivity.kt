@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.widget.ImageButton
 import android.widget.Toast
 import com.example.myapplication.bean.MobileData
 import io.reactivex.disposables.CompositeDisposable
@@ -12,7 +13,7 @@ import java.util.ArrayList
 class MainActivity : AppCompatActivity(), MobileDataAdapter.Listener {
 
     override fun onItemClick(item: MobileData) {
-
+        Toast.makeText(this, "This year mobile data consumption decreased", Toast.LENGTH_SHORT).show()
     }
 
     private var recyclerView: RecyclerView? = null
