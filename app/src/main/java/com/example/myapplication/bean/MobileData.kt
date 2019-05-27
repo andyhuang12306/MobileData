@@ -1,3 +1,3 @@
 package com.example.myapplication.bean
 
-data class MobileData(val volume_of_mobile_data: String, val quarter: String, val _id: String)
+data class MobileData(var volume_of_mobile_data: Float, var quarter: String, var _id: String, var decreased: Boolean)

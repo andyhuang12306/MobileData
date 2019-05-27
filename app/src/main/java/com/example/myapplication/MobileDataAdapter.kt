@@ -30,7 +30,7 @@ class MobileDataAdapter (private val dataList: ArrayList<MobileData>, private va
         fun bind(item: MobileData, listener: Listener, position: Int){
             itemView.item_id.text=item._id
             itemView.item_quarter.text=item.quarter
-            itemView.item_volume.text=item.volume_of_mobile_data
+            itemView.item_volume.text=item.volume_of_mobile_data.toString()
             itemView.setOnClickListener{listener.onItemClick(item)}
         }
     }

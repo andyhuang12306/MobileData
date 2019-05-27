@@ -32,10 +32,40 @@ class MainActivity : AppCompatActivity(), MobileDataAdapter.Listener {
             MobileDataLoader()
                 .getMobileData("a807b7ab-6cad-4aa6-87d0-e283a7353a0f", 56)
                 .subscribe(
-                    { response -> if (response.success) onSuccess(response.result.records) },
+                    { response -> if (response.success) onSuccess(filterData(response.result.records)) },
                     { error -> onError(error) })
         )
 
+    }
+
+    private fun filterData(list: ArrayList<MobileData>): ArrayList<MobileData> {
+        var l =
+            list.filter { item -> !"2004200520062007".contains(item.quarter.substring(0, 4)) } as ArrayList<MobileData>
+        val newList = ArrayList<MobileData>()
+
+        var lastYear=""
+        var lastVolume=0f;
+        var data=MobileData(0f, "", "", false)
+        l.map { item ->
+            val currentYear = item.quarter.substring(0, 4)
+            if(lastYear==currentYear){
+                data.volume_of_mobile_data+=item.volume_of_mobile_data
+                if(lastVolume>item.volume_of_mobile_data){
+                    data.decreased=true
+                }
+                lastVolume=item.volume_of_mobile_data
+            }else{
+                newList.add(data)
+                data=item
+                lastYear=item.quarter.substring(0,4)
+                data.quarter=lastYear
+                data._id=newList.size.toString()
+                lastVolume=item.volume_of_mobile_data
+            }
+        }
+        newList.add(data)
+        newList.removeAt(0)
+        return newList
     }
 
     private fun onSuccess(list: ArrayList<MobileData>) {
