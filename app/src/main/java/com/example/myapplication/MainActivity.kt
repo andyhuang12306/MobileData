@@ -10,7 +10,7 @@ import com.example.myapplication.bean.MobileData
 import io.reactivex.disposables.CompositeDisposable
 import java.util.ArrayList
 
-class MainActivity : AppCompatActivity(), MobileDataAdapter.Listener {
+open class MainActivity : AppCompatActivity(), MobileDataAdapter.Listener {
 
     override fun onItemClick(item: MobileData) {
         Toast.makeText(this, "This year mobile data consumption decreased", Toast.LENGTH_SHORT).show()
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), MobileDataAdapter.Listener {
 
     }
 
-    private fun filterData(list: ArrayList<MobileData>): ArrayList<MobileData> {
+    fun filterData(list: ArrayList<MobileData>): ArrayList<MobileData> {
         var l =
             list.filter { item -> !"2004200520062007".contains(item.quarter.substring(0, 4)) } as ArrayList<MobileData>
         val newList = ArrayList<MobileData>()
