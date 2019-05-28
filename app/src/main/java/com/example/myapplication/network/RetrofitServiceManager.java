@@ -72,6 +72,10 @@ public class RetrofitServiceManager {
         netWorkConnected=hasNetwork;
     }
 
+    public static boolean getNetworkStatus() {
+        return netWorkConnected;
+    }
+
     private static class SingletonHolder{
         private static final RetrofitServiceManager INSTANCE=new RetrofitServiceManager();
     }
@@ -82,6 +86,9 @@ public class RetrofitServiceManager {
 
     public static void setCachPath(File path){
         mCachePath=path;
+    }
+    public static File getCachPath(){
+        return mCachePath;
     }
 
     public <T> T create(Class<T> service){
